@@ -1,0 +1,88 @@
+package assignment3;
+
+import java.util.Scanner;
+
+import java.io.FileReader;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class Doctor extends Employee {
+    private String specialty;
+    private boolean canOperate;
+    public String employeeID;
+
+    //new constructor for default values
+    public Doctor() {
+        super();
+        specialty = "specialty";
+        canOperate = true;
+
+    }
+
+    //when the employee ID is called from Employee, it will run this instead
+    //requires a doctor's ID to begin with MD
+
+    @Override
+    public String getEmployeeID() {
+        return employeeID;
+    }
+    @Override
+    public boolean setEmployeeID(String employeeID) {
+
+        if ( !employeeID.matches("MD" + "\\d{8}") ) {
+            super.setEmployeeID(employeeID);
+            return false;
+        }
+        else {
+            super.setEmployeeID(employeeID);
+        }
+
+        super.employeeID = employeeID;
+        return true;
+    }
+
+
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public boolean setSpecialty(String specialty) {
+        if ( specialty == null )
+            return false;
+
+        specialty = specialty.trim().replaceAll(" +", " ");
+
+        try {
+            // The JSON file should be in the 'src' folder of your project.
+            JSONArray specialties = (JSONArray) (new JSONParser()).parse(new FileReader("src/specialties.json"));
+            for ( Object spec : specialties ) {
+                String specialtyName = (String)((JSONObject)spec).get("Specialty");
+                if (specialty.equalsIgnoreCase(specialtyName)) {
+                    this.specialty = specialty;
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean canOperate() {
+        return canOperate;
+    }
+
+    public void setCanOperate(boolean canOperate) {
+        this.canOperate = canOperate;
+    }
+
+    public String toString() {
+        String toReturn = super.toString();
+        toReturn += "\nSpecialty: " + getSpecialty();
+        toReturn += "\nThis doctor can" + (canOperate()?"":"not") + " perform surgery";
+        return toReturn;
+    }
+}
