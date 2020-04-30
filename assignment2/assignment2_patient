@@ -1,0 +1,42 @@
+package assignment2;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class Patient extends Person {
+    private String physician;
+    private String notes;
+
+    public String getPhysician() {
+        return physician;
+    }
+
+    public void setPhysician(String physician) {
+        this.physician = physician;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public boolean setNotes(String notes) {
+        if ( notes == null )
+            return false;
+
+        notes = notes.trim().replaceAll(" +", " ");
+
+        if ( notes.length() < 2 || notes.length() > 100 )
+            return false;
+
+        if ( !notes.matches("[A-Za-z\\'\\-\\ ]+"))
+            return false;
+
+        this.notes = notes;
+        return true;
+    }
+
+}
