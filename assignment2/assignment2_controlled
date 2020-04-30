@@ -1,0 +1,38 @@
+package assignment2;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class Controlled extends OTCDrug {
+    private boolean requiresID;
+    private boolean RequiresSignature;
+    
+    public int getRequiresID() {
+        return RequiresID;
+    }
+
+    public boolean setRequiresID(int requiresID) {
+        if ( requiresID == null ) {
+            return false;
+
+        this.requiresID = requiresID;
+        return true;
+    }
+
+    public int getRequiresSignature() {
+        return RequiresSignature;
+    }
+
+    public boolean setRequiresSignature(int requiresSignature) {
+        if ( requiresSignature == null ) {
+            return false;
+
+        this.requiresSignature = requiresSignature;
+        return true;
+    }
+
+}
