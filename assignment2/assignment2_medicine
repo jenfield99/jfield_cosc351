@@ -1,0 +1,107 @@
+package assignment2;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class Medicine {
+    private String name;
+    private String manufacturer;
+    private String expirationDate;
+    private int quantity;
+    private String unit;
+
+    public static final String[] ACCEPTABLE_UNITS = {"Milliliters", "Grams", "Capsules"};
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean setName(String name) {
+        if ( name == null )
+            return false;
+
+        name = name.trim().replaceAll(" +", " ");
+
+        if ( name.length() < 2 || name.length() > 25 )
+            return false;
+
+        if ( !name.matches("[A-Za-z\\'\\-\\ ]+"))
+            return false;
+
+        this.name = name;
+        return true;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public boolean setManufacturer(String manufacturer) {
+        if (manufacturer == null)
+            return false;
+
+        manufacturer = manufacturer.trim().replaceAll(" +", " ");
+
+        if (manufacturer.length() < 2 || manufacturer.length() > 25)
+            return false;
+
+        if (!manufacturer.matches("[A-Za-z\\'\\-\\ ]+"))
+            return false;
+
+        this.manufacturer = manufacturer;
+        return true;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public boolean setExpirationDate(String expirationDate) {
+        if ( expirationDate == null )
+            return false;
+
+        expirationDate = expirationDate.trim().replaceAll(" +", " ");
+
+        if ( !expirationDate.matches("\\d{4}-\\d{2}-\\d{2}") )
+            return false;
+
+        this.expirationDate = expirationDate;
+        return true;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public boolean setQuantity(int quantity) {
+        if ( quantity < 1 )
+            return false;
+
+        this.quantity = quantity;
+        return true;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public boolean setUnit(String unit) {
+        if ( unit == null )
+            return false;
+
+        unit = unit.trim().replaceAll(" +", " ");
+
+        for ( String target : ACCEPTABLE_UNITS ) {
+            if ( target.equalsIgnoreCase(unit) ) {
+                this.unit = target;
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
