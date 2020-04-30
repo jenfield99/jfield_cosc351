@@ -1,0 +1,82 @@
+package assignment3;
+
+import java.io.FileReader;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class Nurse extends Employee {
+    private String department;
+    private boolean canPrescribe;
+    public String employeeID;
+
+    //new constructor for default values
+    public Nurse() {
+        super();
+        department = "department";
+        canPrescribe = true;
+    }
+
+    //when the employee ID is called from Employee, it will run this instead
+    //requires a nurse's ID to begin with RN
+
+    @Override
+    public String getEmployeeID() {
+        return employeeID;
+    }
+    @Override
+    public boolean setEmployeeID(String employeeID) {
+
+        if ( !employeeID.matches("RN" + "\\d{8}") ) {
+            super.setEmployeeID(employeeID);
+            return false;
+        }
+        else {
+            super.setEmployeeID(employeeID);
+        }
+
+        super.employeeID = employeeID;
+        return true;
+    }
+    public String getDepartment() {
+        return department;
+    }
+
+    public boolean setDepartment(String department) {
+        if ( department == null )
+            return false;
+
+        department = department.trim().replaceAll(" +", " ");
+
+        try {
+            // The JSON file should be in the 'src' folder of your project.
+            JSONArray departments = (JSONArray) (new JSONParser()).parse(new FileReader("src/departments.json"));
+            for ( Object dept : departments ) {
+                String departmentName = (String)((JSONObject)dept).get("Department");
+                if (department.equalsIgnoreCase(departmentName)) {
+                    this.department = department;
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean canPrescribe() {
+        return canPrescribe;
+    }
+
+    public void setCanPrescribe(boolean canPrescribe) {
+        this.canPrescribe = canPrescribe;
+    }
+
+    public String toString() {
+        String toReturn = super.toString();
+        toReturn += "\nDepartment: " + getDepartment();
+        toReturn += "\nThis nurse can" + (canPrescribe()?"":"not") + " prescribe medications";
+        return toReturn;
+    }
+}
