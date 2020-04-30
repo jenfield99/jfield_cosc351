@@ -1,0 +1,33 @@
+package assignment2;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class Prescription extends Medicine {
+    private int prescriptionID;
+    private String prescriberID;
+    
+    public int getPrescriptionID() {
+        return prescriptionID;
+    }
+
+    public boolean setPrescriptionID(int prescriptionID) {
+        if (prescriptionID < 0 || prescriptionID > 7) {
+            return false;
+        }
+        this.prescriptionID = prescriptionID;
+    }
+
+    
+    public String getPrescriberID() {
+        return PrescriberID;
+    }
+
+    public void setPrescriberID(String prescriberID) {
+        this.prescriberID = prescriberID;
+    }
+}
