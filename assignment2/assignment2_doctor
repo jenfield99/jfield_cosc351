@@ -1,0 +1,45 @@
+package assignment2;
+import java.io.FileReader;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class Doctor extends Employee {
+    private String specialty;
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public boolean setSpecialty(String specialty) {
+        if (specialty == null) {
+            return false;
+        }
+
+        specialty = specialty.trim().replaceAll(" +", " ");
+
+        try {
+            JSONArray specialties = (JSONArray) (new JSONParser())
+                    .parse(new FileReader("src/specialties.json"));
+        }
+
+        this.specialty = specialty;
+    }
+
+
+    public void setName(String firstName, String lastName) {
+
+        String name = "Dr. " + firstName + lastName;
+        super.setFirstName(firstName);
+        super.setLastName(lastName);
+    }
+
+}
