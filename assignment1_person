@@ -1,0 +1,65 @@
+package assignment1;
+
+/**
+ * @author Jennifer Field
+ * @since 2020-02-11
+ * @version 1.0
+ * This class stores the information about the person
+ */
+
+public class Person {
+    private String firstName;
+    private String lastName;
+    private String dateOfBirth;
+
+    //the object retrieves the first name of the person
+    //it will also retrieve the last name and date of birth
+    public String getFirstName() {
+        return firstName;
+    }
+    public boolean setFirstName(String firstName) {
+        //the input has to be between 2 and 20 characters
+        if (firstName == null) {
+            return false;
+        }
+
+        if (firstName.length() < 2 || firstName.length() > 20) {
+            return false;
+        }
+
+        this.firstName = firstName;
+        return true;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public boolean setLastName(String lastName) {
+        if (lastName == null) {
+            return false;
+        }
+
+        if (lastName.length() < 2 || lastName.length() > 20) {
+            return false;
+        }
+
+        this.lastName = lastName;
+        return true;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public boolean setDateOfBirth(String dateOfBirth) {
+        //the date of birth should be in yyyy-mm-dd format
+        if (dateOfBirth.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+            this.dateOfBirth = dateOfBirth;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
