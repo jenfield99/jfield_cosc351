@@ -1,0 +1,130 @@
+package assignment2;
+import java.util.Scanner;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class Assignment2 {
+	
+    public static void main(String[] args) {
+    	
+        Scanner userInput = new Scanner(System.in);
+
+        System.out.println("Let's create and populate an object of type Person.");
+
+        // Create an object of type Person
+        Person p = new Person();
+
+        System.out.print("Enter the first name (2-20 characters): ");
+        p.setFirstName(userInput.nextLine());
+
+        System.out.print("Enter the last name (2-20 characters): ");
+        p.setLastName(userInput.nextLine());
+
+        System.out.print("Enter the date of birth in the format YYYY-MM-DD: ");
+        p.setDateOfBirth(userInput.nextLine());
+
+        System.out.println("\nYou entered the following information: "
+                + p.getFirstName() + " " + p.getLastName() + ", " + p.getDateOfBirth() + "\n");
+
+        System.out.println("Now let's create and populate an object of type Employee.");
+		
+		// Create an object of type Employee
+		Employee e = new Employee();
+		
+		System.out.print("Enter the ID of the Employee (10-digit number): ");
+		e.setEmployeeID(userInput.nextLine());
+		
+		System.out.print("Enter the Hire Date of the Employee (in the format YYYY-MM-DD, can't be after today's date): ");
+		e.setHireDate(userInput.nextLine());
+		
+		System.out.println("\nYou entered the following information: "
+				+ e.getEmployeeID() + " " + e.getHireDate() + ", " + p.getDateOfBirth() + "\n");
+		
+		System.out.println("Now let's create and populate an object of type Doctor.");
+		
+		// Create an object of type Doctor
+		Doctor d = new Doctor();
+		
+		System.out.println("Now let's create and populate an object of type Nurse.");
+		
+		// Create an object of type Nurse
+		Nurse n = new Nurse();
+		
+		System.out.println("Now let's create and populate an object of type Patient.");
+		
+		// Create an object of type Patient
+		Patient p = new Patient();
+				
+		System.out.print("Enter the name of an existing Physician:");
+		p.setPrimaryPhysician(userInput.nextLine());
+		
+		System.out.print("Enter Notes (2-100 characters): ");
+		p.setNotes(userInput.nextLine());
+		
+        System.out.println("Now let's create and populate an object of type Medicine.");
+
+     // Create an object of type Medicine
+        Medicine m = new Medicine();
+
+        System.out.print("Enter the name of the medicine (2-25 characters): ");
+        m.setName(userInput.nextLine());
+
+        System.out.print("Enter the manufacturer of the medicine (2-25 characters): ");
+        m.setManufacturer(userInput.nextLine());
+
+        System.out.print("Enter the expiration date using format YYYY-MM-DD: ");
+        m.setExpirationDate(userInput.nextLine());
+
+        System.out.print("Enter the quantity of medicine in the container (1+): ");
+        m.setQuantity(Integer.parseInt(userInput.nextLine()));
+
+        System.out.print("Enter the unit of the container (milliliters, grams, or capsules): ");
+        m.setUnit(userInput.nextLine());
+
+        System.out.println("\nYou entered the following information for the medicine:");
+        System.out.println(m.getName() + ", manufactured by " + m.getManufacturer());
+        System.out.println("Expiration date: " + m.getExpirationDate());
+        System.out.println("Each container contains " + m.getQuantity() + " " + m.getUnit() + " of product");
+
+        System.out.println("Now let's create and populate an object of type OTC Drug.");
+		
+		// Create an object of type OTC Drug
+		        OTCDrug o = new OTCDrug();
+		        
+		        System.out.print("Enter a valid price): ");
+				o.setCost(userInput.nextLine());
+				
+				System.out.print("Enter the composition of the OTC Drug (2-100 characters): ");
+				o.setComposition(userInput.nextLine());
+		       
+		System.out.println("Now let's create and populate an object of type Controlled.");
+		
+		// Create an object of type Controlled
+		        Controlled c = new Controlled();
+		        
+		        System.out.print("True/False, a controlled OTC drug cannot have no ID and no signature): ");
+				c.setRequiresID(userInput.nextLine());
+				
+				System.out.print("True/False, a controlled OTC drug cannot have no ID and no signature): ");
+				c.setRequiresSignature(userInput.nextLine());
+				
+		System.out.println("Now let's create and populate an object of type Prescription.");
+		
+		// Create an object of type Prescription
+		        Prescription p = new Prescription();
+		        
+		        System.out.print("7-digit number that uses hexadecimal characters): ");
+				c.setPrescriptionID(userInput.nextLine());
+				
+				  System.out.print("The ID of the prescribing person (physician or prescribing nurse)): ");
+					c.setPrescriberID(userInput.nextLine());
+					
+        userInput.close();
+    }
+    }
+}
