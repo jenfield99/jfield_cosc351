@@ -1,0 +1,46 @@
+package assignment2;
+
+/**
+ * 
+ * @authors Surafel Beyene & Jennifer Field 
+ * @since 2020-03-10
+ * @version 1.0
+ */
+
+public class OTCDrug extends Medicine {
+    private int cost;
+    private String composition;
+    
+    public int getCost() {
+        return cost;
+    }
+
+    public boolean setCost(int cost) {
+        if ( cost < 0 )
+            return false;
+
+        this.cost = cost;
+        return true;
+    }
+    
+    public String getComposition() {
+        return composition;
+    }
+
+    public boolean setComposition(String composition) {
+        if ( composition == null )
+            return false;
+
+        composition = composition.trim().replaceAll(" +", " ");
+
+        if ( composition.length() < 2 || composition.length() > 100 )
+            return false;
+        
+        if ( !composition.matches("[A-Za-z\\'\\-\\ ]+"))
+            return false;
+
+        this.composition = composition;
+        return true;
+    }
+
+}
