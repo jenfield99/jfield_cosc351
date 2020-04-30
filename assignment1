@@ -1,0 +1,89 @@
+package assignment1;
+
+/**
+ * @author Jennifer Field
+ * @since 2020-02-11
+ * @version 1.0
+ * This class stores information about the person's medicine
+ */
+
+public class Medicine {
+
+    private String name;
+    private String manufacturer;
+    private String expirationDate;
+    private int quantity;
+    private String unit;
+
+    //the object retrieves the name of the medicine
+    //it will also retrieve the manufacturer, expiration date, quantity, and unit
+    public String getName() {
+        return name;
+    }
+
+    public boolean setName(String name) {
+        //the input should be between 2 and 25 characters
+        if (name == null) {
+            return false;
+        }
+
+        if (name.length() < 2 || name.length() > 25) {
+            return false;
+        }
+        this.name = name;
+        return true;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public boolean setManufacturer(String manufacturer) {
+        if (manufacturer == null) {
+            return false;
+        }
+
+        if (manufacturer.length() < 2 || manufacturer.length() > 25) {
+            return false;
+        }
+        this.manufacturer = manufacturer;
+        return true;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public boolean setExpirationDate(String expirationDate) {
+        //the expiration date should be in yyyy-mm-dd format
+        if (expirationDate.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+            this.expirationDate = expirationDate;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public boolean setQuantity(int quantity) {
+        this.quantity = quantity;
+        return true;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public boolean setUnit(String unit) {
+        //the input should only be millileters, grams, or capsules
+        if (unit.equals("mL") || unit.equals("millileters") || unit.equals("g") || unit.equals("grams")|| unit.equals("capsules")) {
+            this.unit = unit;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
