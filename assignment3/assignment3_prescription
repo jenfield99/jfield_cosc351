@@ -1,0 +1,53 @@
+package assignment3;
+
+public class Prescription extends Medicine {
+    private String prescriptionID;
+    private String prescriberID;
+
+    //new constructor for default values
+    public Prescription() {
+        prescriptionID = "prescription ID";
+        prescriberID = "prescriber ID";
+    }
+
+    public String getPrescriptionID() {
+        return prescriptionID;
+    }
+
+    public boolean setPrescriptionID(String prescriptionID) {
+        if ( prescriptionID == null )
+            return false;
+
+        prescriptionID = prescriptionID.trim().replaceAll(" ", "");
+
+        if ( !prescriptionID.matches("\\d{7}") )
+            return false;
+
+        this.prescriptionID = prescriptionID;
+        return true;
+    }
+
+    public String getPrescriberID() {
+        return prescriberID;
+    }
+
+    public boolean setPrescriberID(String prescriberID) {
+        if ( prescriberID == null )
+            return false;
+
+        prescriberID = prescriberID.trim().replaceAll(" ", "");
+
+        if ( !prescriberID.matches("\\d{10}") )
+            return false;
+
+        this.prescriberID = prescriberID;
+        return true;
+    }
+
+    public String toString() {
+        String toReturn = super.toString();
+        toReturn += "\nPrescription ID: " + getPrescriptionID();
+        toReturn += "\nID of the prescriber: " + getPrescriberID();
+        return toReturn;
+    }
+}
