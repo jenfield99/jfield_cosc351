@@ -1,89 +1,101 @@
 package assignment1;
+import java.util.Scanner;
 
-/**
- * @author Jennifer Field
- * @since 2020-02-11
- * @version 1.0
- * This class stores information about the person's medicine
- */
+public class Assignment1 {
 
-public class Medicine {
+    /**
+     * @author Jennifer Field
+     * @since 2020-02-11
+     * @version 1.0
+     * The main function of this creates an instance of the two subclasses
+     * It asks the users to input the information
+     * which is printed.
+     */
 
-    private String name;
-    private String manufacturer;
-    private String expirationDate;
-    private int quantity;
-    private String unit;
+    public static void main(String[] args) {
 
-    //the object retrieves the name of the medicine
-    //it will also retrieve the manufacturer, expiration date, quantity, and unit
-    public String getName() {
-        return name;
-    }
+        Scanner userInput = new Scanner(System.in);
 
-    public boolean setName(String name) {
-        //the input should be between 2 and 25 characters
-        if (name == null) {
-            return false;
+        Person myPerson = new Person();
+        Medicine myMedicine = new Medicine();
+
+        boolean personInput = false;
+        boolean medInput = false;
+
+        //the loop allows for user input
+        //it is repeated for each variable
+        do {
+            System.out.println("Enter the person's first name (2-20 characters): ");
+            String fName = userInput.nextLine();
+
+            //the string is stored into the contact
+            personInput = myPerson.setFirstName(fName);
+        } while(!personInput);
+
+        do {
+            System.out.println("Enter the person's last name (2-20 characters): ");
+            String lName = userInput.nextLine();
+
+            personInput = myPerson.setLastName(lName);
+        } while(!personInput);
+
+        do {
+            System.out.println("Enter the person's date of birth(yyyy-mm-dd): ");
+            String dob = userInput.nextLine();
+
+            personInput = myPerson.setDateOfBirth(dob);
+        } while(!personInput);
+
+        //prints the above info on the person
+
+        System.out.println("Name: " + myPerson.getFirstName() + " " + myPerson.getLastName());
+        System.out.println("Date of Birth: " + myPerson.getDateOfBirth());
+
+        //begins taking information about the medicine
+
+        do {
+            System.out.println("Enter the name of the medicine (2-25 characters): ");
+            String mName = userInput.nextLine();
+
+            medInput = myMedicine.setName(mName);
+        } while(!medInput);
+
+        do {
+            System.out.println("Enter the name of the manufacturer (2-25 characters): ");
+            String manufacturer = userInput.nextLine();
+
+            medInput = myMedicine.setManufacturer(manufacturer);
+        } while (!medInput);
+
+        do {
+            System.out.println("Enter the expiration date (yyyy-mm-dd): ");
+            String expDate = userInput.nextLine();
+
+            medInput = myMedicine.setExpirationDate(expDate);
+        } while (!medInput);
+
+        do {
+            System.out.println("Enter the quantity: ");
+            int amount = Integer.parseInt(userInput.nextLine());
+
+            medInput = myMedicine.setQuantity(amount);
+        } while (!medInput);
+
+        do {
+            System.out.println("Enter the unit(mL/g/capsules): ");
+            String unit = userInput.nextLine();
+
+            medInput = myMedicine.setUnit(unit);
+        } while (!medInput);
+
+        System.out.println("Medicine");
+        System.out.println("Name: " + myMedicine.getName());
+        System.out.println("Manufacturer: " + myMedicine.getManufacturer());
+        System.out.println("Expiration Date: " + myMedicine.getExpirationDate());
+        System.out.println("Quantity: " + myMedicine.getQuantity());
+        System.out.println("Unit: " + myMedicine.getUnit());
+
+        userInput.close();
+
         }
-
-        if (name.length() < 2 || name.length() > 25) {
-            return false;
-        }
-        this.name = name;
-        return true;
     }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public boolean setManufacturer(String manufacturer) {
-        if (manufacturer == null) {
-            return false;
-        }
-
-        if (manufacturer.length() < 2 || manufacturer.length() > 25) {
-            return false;
-        }
-        this.manufacturer = manufacturer;
-        return true;
-    }
-
-    public String getExpirationDate() {
-        return expirationDate;
-    }
-
-    public boolean setExpirationDate(String expirationDate) {
-        //the expiration date should be in yyyy-mm-dd format
-        if (expirationDate.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
-            this.expirationDate = expirationDate;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public boolean setQuantity(int quantity) {
-        this.quantity = quantity;
-        return true;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public boolean setUnit(String unit) {
-        //the input should only be millileters, grams, or capsules
-        if (unit.equals("mL") || unit.equals("millileters") || unit.equals("g") || unit.equals("grams")|| unit.equals("capsules")) {
-            this.unit = unit;
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
